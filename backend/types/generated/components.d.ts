@@ -60,6 +60,29 @@ export interface ElementsFooterSection extends Schema.Component {
   };
 }
 
+export interface ElementsHeroItem extends Schema.Component {
+  collectionName: 'components_elements_hero_items';
+  info: {
+    displayName: 'Hero Item';
+    icon: 'cube';
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+      }> &
+      Attribute.DefaultTo<'Title'>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+      }>;
+    image: Attribute.Media & Attribute.Required;
+    actions: Attribute.Component<'links.button-link', true>;
+  };
+}
+
 export interface ElementsLogos extends Schema.Component {
   collectionName: 'components_elements_logos';
   info: {
@@ -310,6 +333,24 @@ export interface SectionsHeading extends Schema.Component {
   };
 }
 
+export interface SectionsHeroGroup extends Schema.Component {
+  collectionName: 'components_sections_hero_groups';
+  info: {
+    displayName: 'Hero Group';
+    icon: 'command';
+  };
+  attributes: {
+    items: Attribute.Component<'elements.hero-item', true> &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 5;
+        },
+        number
+      >;
+  };
+}
+
 export interface SectionsHero extends Schema.Component {
   collectionName: 'components_slices_heroes';
   info: {
@@ -481,6 +522,7 @@ declare module '@strapi/types' {
       'elements.feature-row': ElementsFeatureRow;
       'elements.feature': ElementsFeature;
       'elements.footer-section': ElementsFooterSection;
+      'elements.hero-item': ElementsHeroItem;
       'elements.logos': ElementsLogos;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.plan': ElementsPlan;
@@ -498,6 +540,7 @@ declare module '@strapi/types' {
       'sections.feature-rows-group': SectionsFeatureRowsGroup;
       'sections.features': SectionsFeatures;
       'sections.heading': SectionsHeading;
+      'sections.hero-group': SectionsHeroGroup;
       'sections.hero': SectionsHero;
       'sections.large-video': SectionsLargeVideo;
       'sections.lead-form': SectionsLeadForm;

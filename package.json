@@ -1,13 +1,13 @@
 {
   "scripts": {
-    "frontend": "npm run dev --prefix ../frontend/",
-    "backend": "npm run dev --prefix ../backend/",
+    "frontend": "npm run dev --prefix ./frontend/",
+    "backend": "npm run dev --prefix ./backend/",
     "clear": "cd frontend && rm -rf .next && rm -rf cache",
     "setup:frontend": "cd frontend && npm install",
     "setup:backend": "cd backend && npm install",
     "setup": "npm install && npm run setup:frontend && npm run setup:backend",
     "dev": "npm run clear && concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\"",
-    "seed": "cd backend && yarn strapi import -f ../seed-data.tar.gz",
+    "seed": "cd backend && npx strapi import -f ../seed-data.tar.gz",
     "export": "cd backend && npx run strapi export --no-encrypt -f ../seed-data",
     "repo:upstream": "git fetch upstream && git merge upstream/main"
   },

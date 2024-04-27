@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_sections_hero_groups",
+  "info": {
+    "displayName": "Hero Group",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "displayName": "Hero Item",
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.hero-item",
+      "min": 1,
+      "max": 5
+    }
+  }
+}

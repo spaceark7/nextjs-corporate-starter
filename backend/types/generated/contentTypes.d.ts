@@ -1053,26 +1053,6 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    contentSections: Attribute.DynamicZone<
-      [
-        'sections.hero',
-        'sections.bottom-actions',
-        'sections.feature-columns-group',
-        'sections.feature-rows-group',
-        'sections.testimonials-group',
-        'sections.large-video',
-        'sections.rich-text',
-        'sections.pricing',
-        'sections.lead-form',
-        'sections.features',
-        'sections.heading'
-      ]
-    > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     slug: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1092,6 +1072,27 @@ export interface ApiPagePage extends Schema.CollectionType {
         };
       }>;
     seo: Attribute.Component<'shared.seo'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    contentSections: Attribute.DynamicZone<
+      [
+        'sections.bottom-actions',
+        'sections.feature-columns-group',
+        'sections.feature-rows-group',
+        'sections.features',
+        'sections.heading',
+        'sections.hero',
+        'sections.large-video',
+        'sections.lead-form',
+        'sections.pricing',
+        'sections.rich-text',
+        'sections.testimonials-group',
+        'sections.hero-group'
+      ]
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
