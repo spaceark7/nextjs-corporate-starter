@@ -8,7 +8,7 @@
     "setup": "npm install && npm run setup:frontend && npm run setup:backend",
     "dev": "npm run clear && concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\"",
     "seed": "cd backend && npx strapi import -f ../seed-data.tar.gz",
-    "export": "cd backend && npx run strapi export --no-encrypt -f ../seed-data",
+    "export": "cd backend && npx strapi export --no-encrypt -f ../seed-data",
     "repo:upstream": "git fetch upstream && git merge upstream/main"
   },
   "dependencies": {
