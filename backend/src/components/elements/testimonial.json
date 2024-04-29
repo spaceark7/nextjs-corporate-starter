@@ -18,10 +18,17 @@
     },
     "text": {
       "type": "text",
-      "required": true
+      "required": true,
+      "default": "Testimoni Pelanggan"
     },
-    "authorName": {
+    "customer": {
       "type": "string",
+      "required": true,
+      "default": "Nama Pelanggan"
+    },
+    "company": {
+      "type": "string",
+      "default": "Nama Perusahaan",
       "required": true
     }
   }

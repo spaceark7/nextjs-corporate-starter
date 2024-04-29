@@ -136,6 +136,26 @@ export interface ElementsPlan extends Schema.Component {
   };
 }
 
+export interface ElementsServiceItem extends Schema.Component {
+  collectionName: 'components_elements_service_items';
+  info: {
+    displayName: 'Service Item';
+    icon: 'cube';
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Nama Layanan'>;
+    description: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 120;
+      }> &
+      Attribute.DefaultTo<'Desktipsi singkat'>;
+    image: Attribute.Media;
+    link: Attribute.String;
+  };
+}
+
 export interface ElementsTestimonial extends Schema.Component {
   collectionName: 'components_slices_testimonials';
   info: {
@@ -146,8 +166,15 @@ export interface ElementsTestimonial extends Schema.Component {
   };
   attributes: {
     picture: Attribute.Media & Attribute.Required;
-    text: Attribute.Text & Attribute.Required;
-    authorName: Attribute.String & Attribute.Required;
+    text: Attribute.Text &
+      Attribute.Required &
+      Attribute.DefaultTo<'Testimoni Pelanggan'>;
+    customer: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Nama Pelanggan'>;
+    company: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Nama Perusahaan'>;
   };
 }
 
@@ -351,6 +378,18 @@ export interface SectionsHeroGroup extends Schema.Component {
   };
 }
 
+export interface SectionsHeroRoute extends Schema.Component {
+  collectionName: 'components_sections_hero_routes';
+  info: {
+    displayName: 'Hero Route';
+    icon: 'earth';
+    description: '';
+  };
+  attributes: {
+    image: Attribute.Media & Attribute.Required;
+  };
+}
+
 export interface SectionsHero extends Schema.Component {
   collectionName: 'components_slices_heroes';
   info: {
@@ -424,6 +463,84 @@ export interface SectionsRichText extends Schema.Component {
   };
 }
 
+export interface SectionsRowBlock extends Schema.Component {
+  collectionName: 'components_sections_row_blocks';
+  info: {
+    displayName: 'Row Block';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'Title'>;
+    description: Attribute.Text & Attribute.Required;
+    media: Attribute.Media & Attribute.Required;
+    action: Attribute.Component<'links.button-link'>;
+    reverse: Attribute.Boolean & Attribute.DefaultTo<false>;
+    youtube_url: Attribute.String;
+  };
+}
+
+export interface SectionsRowGroupCardList extends Schema.Component {
+  collectionName: 'components_sections_row_group_card_lists';
+  info: {
+    displayName: 'Row Group Card List';
+    icon: 'cube';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'title'>;
+    is_news_post: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    items: Attribute.Component<'elements.service-item', true>;
+  };
+}
+
+export interface SectionsServiceCardGroup extends Schema.Component {
+  collectionName: 'components_sections_service_card_groups';
+  info: {
+    displayName: 'Service Card Group';
+    icon: 'apps';
+  };
+  attributes: {
+    items: Attribute.Component<'elements.service-item', true>;
+    title: Attribute.String & Attribute.Required & Attribute.DefaultTo<'title'>;
+    text: Attribute.Blocks;
+  };
+}
+
+export interface SectionsServiceGroup extends Schema.Component {
+  collectionName: 'components_sections_service_groups';
+  info: {
+    displayName: 'Service Group';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }> &
+      Attribute.DefaultTo<'title'>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }> &
+      Attribute.DefaultTo<'Tulis deskripsi disini'>;
+    items: Attribute.Component<'elements.service-item', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 12;
+        },
+        number
+      >;
+    header_title: Attribute.String & Attribute.Required;
+    is_service_collection: Attribute.Boolean;
+  };
+}
+
 export interface SectionsTestimonialsGroup extends Schema.Component {
   collectionName: 'components_slices_testimonials_groups';
   info: {
@@ -436,6 +553,7 @@ export interface SectionsTestimonialsGroup extends Schema.Component {
     title: Attribute.String;
     description: Attribute.Text;
     testimonials: Attribute.Component<'elements.testimonial', true>;
+    header_title: Attribute.String;
   };
 }
 
@@ -462,6 +580,17 @@ export interface SharedQuote extends Schema.Component {
     title: Attribute.String;
     body: Attribute.Text & Attribute.Required;
     author: Attribute.String;
+  };
+}
+
+export interface SharedRichTextBlock extends Schema.Component {
+  collectionName: 'components_shared_rich_text_blocks';
+  info: {
+    displayName: 'Rich Text Block';
+    icon: 'discuss';
+  };
+  attributes: {
+    text: Attribute.Blocks;
   };
 }
 
@@ -526,6 +655,7 @@ declare module '@strapi/types' {
       'elements.logos': ElementsLogos;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.plan': ElementsPlan;
+      'elements.service-item': ElementsServiceItem;
       'elements.testimonial': ElementsTestimonial;
       'layout.footer': LayoutFooter;
       'layout.logo': LayoutLogo;
@@ -541,14 +671,20 @@ declare module '@strapi/types' {
       'sections.features': SectionsFeatures;
       'sections.heading': SectionsHeading;
       'sections.hero-group': SectionsHeroGroup;
+      'sections.hero-route': SectionsHeroRoute;
       'sections.hero': SectionsHero;
       'sections.large-video': SectionsLargeVideo;
       'sections.lead-form': SectionsLeadForm;
       'sections.pricing': SectionsPricing;
       'sections.rich-text': SectionsRichText;
+      'sections.row-block': SectionsRowBlock;
+      'sections.row-group-card-list': SectionsRowGroupCardList;
+      'sections.service-card-group': SectionsServiceCardGroup;
+      'sections.service-group': SectionsServiceGroup;
       'sections.testimonials-group': SectionsTestimonialsGroup;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
+      'shared.rich-text-block': SharedRichTextBlock;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;

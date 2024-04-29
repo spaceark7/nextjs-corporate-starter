@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_elements_service_items",
+  "info": {
+    "displayName": "Service Item",
+    "icon": "cube"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Nama Layanan"
+    },
+    "description": {
+      "type": "text",
+      "default": "Desktipsi singkat",
+      "maxLength": 120
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

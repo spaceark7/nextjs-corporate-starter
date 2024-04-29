@@ -80,7 +80,7 @@ export default async function RootLayout({
 
   return (
     <html lang={params.lang}>
-      <body>
+      <body className='relative'>
         <Navbar
           links={navbar.links}
           logoUrl={navbarLogoUrl}

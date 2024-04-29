@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_rich_text_blocks",
+  "info": {
+    "displayName": "Rich Text Block",
+    "icon": "discuss"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "blocks"
+    }
+  }
+}

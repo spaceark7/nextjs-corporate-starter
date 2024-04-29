@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_sections_service_groups",
+  "info": {
+    "displayName": "Service Group",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "title",
+      "maxLength": 25
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "maxLength": 255,
+      "default": "Tulis deskripsi disini"
+    },
+    "items": {
+      "displayName": "Service Item",
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.service-item",
+      "max": 12,
+      "min": 1,
+      "required": true
+    },
+    "header_title": {
+      "type": "string",
+      "required": true
+    },
+    "is_service_collection": {
+      "type": "boolean"
+    }
+  }
+}

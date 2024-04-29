@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_sections_row_group_card_lists",
+  "info": {
+    "displayName": "Row Group Card List",
+    "icon": "cube"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "title"
+    },
+    "is_news_post": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.service-item"
+    }
+  }
+}

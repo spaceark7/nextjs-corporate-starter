@@ -18,6 +18,9 @@
       "type": "component",
       "repeatable": true,
       "component": "elements.testimonial"
+    },
+    "header_title": {
+      "type": "string"
     }
   }
 }

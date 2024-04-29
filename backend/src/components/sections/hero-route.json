@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_hero_routes",
+  "info": {
+    "displayName": "Hero Route",
+    "icon": "earth",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

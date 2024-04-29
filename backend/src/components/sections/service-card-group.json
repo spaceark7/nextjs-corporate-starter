@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_service_card_groups",
+  "info": {
+    "displayName": "Service Card Group",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.service-item"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "title"
+    },
+    "text": {
+      "type": "blocks"
+    }
+  }
+}

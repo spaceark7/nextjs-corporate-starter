@@ -78,8 +78,13 @@
         "sections.lead-form",
         "sections.pricing",
         "sections.rich-text",
+        "sections.hero-group",
+        "sections.row-block",
+        "sections.service-group",
         "sections.testimonials-group",
-        "sections.hero-group"
+        "sections.hero-route",
+        "sections.service-card-group",
+        "sections.row-group-card-list"
       ]
     }
   }

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_sections_row_blocks",
+  "info": {
+    "displayName": "Row Block",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Title"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "action": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.button-link"
+    },
+    "reverse": {
+      "type": "boolean",
+      "default": false
+    },
+    "youtube_url": {
+      "type": "string"
+    }
+  }
+}
