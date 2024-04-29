@@ -12,7 +12,6 @@ export default function RichTextBlockRenderer({
   content: BlocksContent
   className?: string
 }) {
-  console.log('RichTextBlockRenderer content:', content)
   return (
     <div className={cn(className)}>
       <BlocksRenderer content={content} />

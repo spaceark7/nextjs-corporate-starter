@@ -8,7 +8,13 @@ import ServiceCollections from './ServiceCollections'
 interface ServiceGroupProps {
   data: ServiceGroup
 }
-const ServiceGroup = ({ data }: ServiceGroupProps) => {
+const ServiceGroup = ({
+  data,
+  lang,
+}: {
+  data: ServiceGroup
+  lang?: string
+}) => {
   return (
     <section className='dark:bg-black  dark:text-gray-100'>
       <div className='container relative flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between'>
@@ -20,7 +26,7 @@ const ServiceGroup = ({ data }: ServiceGroupProps) => {
           <p className='mt-4 break-words'>{data.description}</p>
         </div>
         {data.is_service_collection ? (
-          <ServiceCollections />
+          <ServiceCollections lang={lang || 'en'} />
         ) : (
           <BentoGrid className='mx-auto w-full md:auto-rows-[20rem]'>
             {data.items.map((item, i) => {

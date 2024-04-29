@@ -13,10 +13,7 @@ const RowBlock = ({ data }: RowBlockProps) => {
   const imgUrl = getStrapiMedia(data.media.data.attributes.url)
   const [isPlaying, setIsPlaying] = React.useState(false)
 
-  console.log(imgUrl)
-
   const onVideoPlay = () => {
-    console.log('video play')
     setIsPlaying(true)
   }
 

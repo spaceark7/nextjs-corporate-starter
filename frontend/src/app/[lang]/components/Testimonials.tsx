@@ -71,7 +71,6 @@ interface TestimonialsProps {
 // }
 
 export default function Testimonials({ data }: TestimonialsProps) {
-  console.log(data)
   return (
     <section className='dark:bg-black dark:text-gray-100  m:py-12 lg:py-24'>
       <div className='container mx-auto py-4 space-y-2 text-center'>

@@ -6,13 +6,13 @@ import { FALLBACK_SEO } from '@/app/[lang]/utils/constants'
 type Props = {
   params: {
     lang: string
-    slug: string
+    slug: string[]
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await getPageBySlug(params.slug, params.lang)
-
+  console.log('generateMetadata', page)
   if (!page.data[0].attributes?.seo) return FALLBACK_SEO
   const metadata = page.data[0].attributes.seo
 
@@ -24,12 +24,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
-
+  console.log('PageRoute', page)
   if (page.data.length === 0) return null
-  console.log('PageRoute', page.data[0].attributes.contentSections)
 
-  const contentSections = page.data[0].attributes.contentSections
-  return contentSections.map((section: any, index: number) => {
-    return sectionRenderer(section, index)
-  })
+  if (Array.isArray(params.slug)) {
+    console.log('params.slug', params.slug.length > 1)
+    if (params.slug.length > 1) {
+      const content = {
+        ...page.data[0].attributes,
+        __component: `${params.slug[0]}-detail`,
+      }
+      return sectionRenderer(content, 0, params.lang)
+    } else {
+      const contentSections = page.data[0].attributes.contentSections
+      console.log('contentSections', contentSections)
+      return contentSections.map((section: any, index: number) => {
+        return sectionRenderer(section, index, params.lang)
+      })
+    }
+  } else {
+    const contentSections = page.data[0].attributes.contentSections
+    return contentSections.map((section: any, index: number) => {
+      return sectionRenderer(section, index, params.lang)
+    })
+  }
 }

@@ -9,7 +9,6 @@ interface RowGroupWithCardListProps {
 export default function RowGroupWithCardList({
   data,
 }: RowGroupWithCardListProps) {
-  console.log('RowGroupWithCardList data:', data)
   return (
     <section className='dark:bg-black dark:text-gray-100'>
       <div

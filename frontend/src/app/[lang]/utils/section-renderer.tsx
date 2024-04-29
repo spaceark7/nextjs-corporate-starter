@@ -10,7 +10,7 @@ import HeroRoute from '../components/HeroRoute'
 import ServiceCardGroup from '../components/ServiceCardGroup'
 import RowGroupWithCardList from '../components/RowGroupWithCardList'
 
-export function sectionRenderer(section: any, index: number) {
+export function sectionRenderer(section: any, index: number, lang?: string) {
   switch (section.__component) {
     case 'sections.hero':
       return <Hero key={index} data={section} />
@@ -19,7 +19,7 @@ export function sectionRenderer(section: any, index: number) {
     case 'sections.row-block':
       return <RowBlock key={index} data={section} />
     case 'sections.service-group':
-      return <ServiceGroup key={index} data={section} />
+      return <ServiceGroup key={index} data={section} lang={lang} />
     case 'sections.service-card-group':
       return <ServiceCardGroup key={index} data={section} />
     case 'sections.row-group-card-list':

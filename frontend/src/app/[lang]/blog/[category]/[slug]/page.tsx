@@ -32,7 +32,7 @@ async function getPostBySlug(slug: string) {
 async function getMetaData(slug: string) {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
     const path = `/articles`;
-    const urlParamsObject = {
+    const urlParamsObject = {   
         filters: { slug },
         populate: { seo: { populate: '*' } },
     };

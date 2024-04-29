@@ -17,11 +17,9 @@ export default async function RootRoute({
     if (page.data.length == 0 && params.lang !== 'in') return <LangRedirect />
     if (page.data.length === 0) return null
 
-    console.log(page.data[0])
     const contentSections = page.data[0].attributes.contentSections
-    console.log('contentSections', contentSections)
     return contentSections.map((section: any, index: number) =>
-      sectionRenderer(section, index)
+      sectionRenderer(section, index, params.lang)
     )
   } catch (error: any) {
     console.log('error', error)

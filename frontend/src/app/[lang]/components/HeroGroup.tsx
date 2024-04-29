@@ -17,11 +17,9 @@ const HeroGroup = ({ data }: HeroGroupProps) => {
       <div className='slide-container'>
         <Fade
           onStartChange={(oldIndex, newIndex) => {
-            console.log(`fade start change from ${oldIndex} to ${newIndex}`)
             setCurrent(newIndex)
           }}
           onChange={(oldIndex, newIndex) => {
-            console.log(`fade change from ${oldIndex} to ${newIndex}`)
             setCurrent(newIndex)
           }}
           pauseOnHover={false}

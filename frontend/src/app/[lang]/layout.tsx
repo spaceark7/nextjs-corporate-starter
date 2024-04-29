@@ -4,7 +4,6 @@ import { getStrapiMedia, getStrapiURL } from './utils/api-helpers'
 import { fetchAPI } from './utils/fetch-api'
 
 import { i18n } from '../../../i18n-config'
-import Banner from './components/Banner'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { FALLBACK_SEO } from '@/app/[lang]/utils/constants'
