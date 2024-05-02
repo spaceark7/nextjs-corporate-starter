@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_content_blocks",
+  "info": {
+    "displayName": "Content Block",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.rich-text-with-media"
+    }
+  }
+}

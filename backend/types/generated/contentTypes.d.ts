@@ -930,8 +930,6 @@ export interface ApiGlobalGlobal extends Schema.SingleType {
     description: '';
   };
   options: {
-    increments: true;
-    timestamps: true;
     draftAndPublish: false;
   };
   pluginOptions: {
@@ -1174,7 +1172,9 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.testimonials-group',
         'sections.hero-route',
         'sections.service-card-group',
-        'sections.row-group-card-list'
+        'sections.row-group-card-list',
+        'sections.content-block',
+        'sections.bento-grid-with-collapsible'
       ]
     > &
       Attribute.SetPluginOptions<{

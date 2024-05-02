@@ -14,6 +14,24 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 25
+    },
+    "subtitle": {
+      "type": "string",
+      "maxLength": 25
+    },
+    "use_parallax": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "default": "description",
+      "maxLength": 250
     }
   }
 }

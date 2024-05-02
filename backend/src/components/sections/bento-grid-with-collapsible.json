@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_bento_grid_with_collapsibles",
+  "info": {
+    "displayName": "Bento Grid With Collapsible",
+    "icon": "earth",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.collapsible-content"
+    }
+  }
+}

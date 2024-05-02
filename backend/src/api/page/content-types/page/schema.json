@@ -84,7 +84,9 @@
         "sections.testimonials-group",
         "sections.hero-route",
         "sections.service-card-group",
-        "sections.row-group-card-list"
+        "sections.row-group-card-list",
+        "sections.content-block",
+        "sections.bento-grid-with-collapsible"
       ]
     }
   }

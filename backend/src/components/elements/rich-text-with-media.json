@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_rich_text_with_medias",
+  "info": {
+    "displayName": "Rich Text With Media",
+    "icon": "earth",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

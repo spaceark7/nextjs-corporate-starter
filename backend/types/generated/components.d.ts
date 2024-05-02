@@ -1,5 +1,20 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ElementsCollapsibleContent extends Schema.Component {
+  collectionName: 'components_elements_collapsible_contents';
+  info: {
+    displayName: 'CollapsibleContent';
+    icon: 'cube';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    content: Attribute.Blocks;
+    image: Attribute.Media;
+  };
+}
+
 export interface ElementsFeatureColumn extends Schema.Component {
   collectionName: 'components_slices_feature_columns';
   info: {
@@ -136,6 +151,19 @@ export interface ElementsPlan extends Schema.Component {
   };
 }
 
+export interface ElementsRichTextWithMedia extends Schema.Component {
+  collectionName: 'components_sections_rich_text_with_medias';
+  info: {
+    displayName: 'Rich Text With Media';
+    icon: 'earth';
+    description: '';
+  };
+  attributes: {
+    text: Attribute.Blocks;
+    image: Attribute.Media;
+  };
+}
+
 export interface ElementsServiceItem extends Schema.Component {
   collectionName: 'components_elements_service_items';
   info: {
@@ -194,6 +222,7 @@ export interface LayoutFooter extends Schema.Component {
       'oneToMany',
       'api::category.category'
     >;
+    description: Attribute.Text;
   };
 }
 
@@ -279,7 +308,17 @@ export interface LinksSocialLink extends Schema.Component {
     url: Attribute.String & Attribute.Required;
     newTab: Attribute.Boolean & Attribute.DefaultTo<false>;
     text: Attribute.String & Attribute.Required;
-    social: Attribute.Enumeration<['YOUTUBE', 'TWITTER', 'DISCORD', 'WEBSITE']>;
+    social: Attribute.Enumeration<
+      [
+        'YOUTUBE',
+        'TWITTER',
+        'DISCORD',
+        'WEBSITE',
+        'FACEBOOK',
+        'INSTAGRAM',
+        'TIKTOK'
+      ]
+    >;
   };
 }
 
@@ -297,6 +336,20 @@ export interface MetaMetadata extends Schema.Component {
   };
 }
 
+export interface SectionsBentoGridWithCollapsible extends Schema.Component {
+  collectionName: 'components_sections_bento_grid_with_collapsibles';
+  info: {
+    displayName: 'Bento Grid With Collapsible';
+    icon: 'earth';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    items: Attribute.Component<'elements.collapsible-content', true>;
+  };
+}
+
 export interface SectionsBottomActions extends Schema.Component {
   collectionName: 'components_slices_bottom_actions';
   info: {
@@ -309,6 +362,18 @@ export interface SectionsBottomActions extends Schema.Component {
     title: Attribute.String;
     buttons: Attribute.Component<'links.button-link', true>;
     description: Attribute.Text;
+  };
+}
+
+export interface SectionsContentBlock extends Schema.Component {
+  collectionName: 'components_sections_content_blocks';
+  info: {
+    displayName: 'Content Block';
+    icon: 'earth';
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    content: Attribute.Component<'elements.rich-text-with-media', true>;
   };
 }
 
@@ -387,6 +452,22 @@ export interface SectionsHeroRoute extends Schema.Component {
   };
   attributes: {
     image: Attribute.Media & Attribute.Required;
+    title: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    subtitle: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    use_parallax: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    description: Attribute.Text &
+      Attribute.SetMinMaxLength<{
+        maxLength: 250;
+      }> &
+      Attribute.DefaultTo<'description'>;
   };
 }
 
@@ -647,6 +728,7 @@ export interface SharedVideoEmbed extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'elements.collapsible-content': ElementsCollapsibleContent;
       'elements.feature-column': ElementsFeatureColumn;
       'elements.feature-row': ElementsFeatureRow;
       'elements.feature': ElementsFeature;
@@ -655,6 +737,7 @@ declare module '@strapi/types' {
       'elements.logos': ElementsLogos;
       'elements.notification-banner': ElementsNotificationBanner;
       'elements.plan': ElementsPlan;
+      'elements.rich-text-with-media': ElementsRichTextWithMedia;
       'elements.service-item': ElementsServiceItem;
       'elements.testimonial': ElementsTestimonial;
       'layout.footer': LayoutFooter;
@@ -665,7 +748,9 @@ declare module '@strapi/types' {
       'links.link': LinksLink;
       'links.social-link': LinksSocialLink;
       'meta.metadata': MetaMetadata;
+      'sections.bento-grid-with-collapsible': SectionsBentoGridWithCollapsible;
       'sections.bottom-actions': SectionsBottomActions;
+      'sections.content-block': SectionsContentBlock;
       'sections.feature-columns-group': SectionsFeatureColumnsGroup;
       'sections.feature-rows-group': SectionsFeatureRowsGroup;
       'sections.features': SectionsFeatures;
