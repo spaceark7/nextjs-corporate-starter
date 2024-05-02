@@ -9,7 +9,7 @@ interface ServiceCardGroupProps {
 }
 const ServiceCardGroup = ({ data }: ServiceCardGroupProps) => {
   return (
-    <section className='dark:bg-black  dark:text-gray-100 '>
+    <section className='dark:bg-black  dark:text-gray-100 bg-poly-slate-700 bg-no-repeat bg-bottom bg-contain'>
       <div className='container relative flex flex-col justify-center p-6 mx-auto sm:py-12   lg:justify-between'>
         <div className='mb-4  mx-auto h-fit'>
           <div className='flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-3xl  lg:text-left'>

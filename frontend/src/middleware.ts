@@ -16,7 +16,10 @@ function getLocale(request: NextRequest): string | undefined {
   console.log('languages', languages)
   // @ts-ignore locales are readonly
   const locales: string[] = i18n.locales
-  return matchLocale(languages, locales, i18n.defaultLocale)
+  const locale = matchLocale(languages, locales, i18n.defaultLocale)
+  request.headers.set('Accept-Language', locale || i18n.defaultLocale)
+  // temporary default locale
+  return i18n.defaultLocale
 }
 
 export function middleware(request: NextRequest) {
@@ -27,21 +30,26 @@ export function middleware(request: NextRequest) {
   if (
     [
       '/manifest.json',
-      '/favicon.ico',
+      '/favicon.ico'
       // Your other files in `public`
     ].includes(pathname)
   )
     return
 
   // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  )
+  const pathnameIsMissingLocale = i18n.locales.every((locale) => {
+    return !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  })
 
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
+    // Get the best locale based on the `Accept-Language` header
+
     const locale = getLocale(request)
     console.log('getLocale', locale)
+    const acceptedLanguage = request.headers.get('Accept-Language')
+
+    console.log('acceptedLanguage', acceptedLanguage)
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
     return NextResponse.redirect(new URL(`/${locale}/${pathname}`, request.url))

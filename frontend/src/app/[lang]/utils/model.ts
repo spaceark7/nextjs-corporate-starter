@@ -238,3 +238,35 @@ export interface NewsModelAttributes {
   cover: Media
   blocks: BlocksContent
 }
+
+
+export interface ContentBlock {
+  id: number
+  __component: string
+  title: string
+  content: ContentBlockItem[]
+}
+
+export interface ContentBlockItem {
+  id: number
+  text: BlocksContent
+  image: Media
+}
+
+export interface BentoGridWithCollapsible {
+  id: number
+  __component: string
+  title: string
+  description: string
+  items: BentoGridItemCollapsible[]
+}
+
+export interface BentoGridItemCollapsible {
+  id: number
+  title: string
+  description: string
+  content: BlocksContent
+  image: Media
+}
+
+

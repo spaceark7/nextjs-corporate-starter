@@ -8,8 +8,10 @@ import { renderButtonStyle } from '@/app/[lang]/utils/render-button-style'
 
 export default async function NewsCardList({
   className,
+  lang
 }: {
   className?: string
+  lang?: string
 }) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
   const path = `/news-post`
@@ -18,8 +20,9 @@ export default async function NewsCardList({
     populate: 'deep',
     pagination: {
       start: 0,
-      limit: 8,
+      limit: 8
     },
+    locale: lang
   }
   const options = { headers: { Authorization: `Bearer ${token}` } }
   const responseData = await fetchAPI(path, urlParamsObject, options)
@@ -34,8 +37,7 @@ export default async function NewsCardList({
         className={cn(
           'grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4',
           className
-        )}
-      >
+        )}>
         {responseData.data.map((news: NewsModel) => (
           <NewsCardItem key={news.id} data={news.attributes} />
         ))}

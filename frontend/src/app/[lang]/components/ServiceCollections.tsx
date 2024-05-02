@@ -18,7 +18,6 @@ export default async function ServiceCollections({ lang }: { lang: string }) {
 
   const responseData = await fetchAPI(path, urlParamsObject, options)
 
-  console.log('responseData', responseData)
 
   if (!responseData.data.length) {
     return null

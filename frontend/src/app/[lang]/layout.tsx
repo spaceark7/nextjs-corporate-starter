@@ -29,14 +29,15 @@ async function getGlobal(lang: string): Promise<any> {
       'footer.legalLinks',
       'footer.socialLinks',
       'footer.categories',
+      'footer.description'
     ],
-    locale: lang,
+    locale: lang
   }
   return await fetchAPI(path, urlParamsObject, options)
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: { lang: string }
 }): Promise<Metadata> {
@@ -51,14 +52,14 @@ export async function generateMetadata({
     title: metadata.metaTitle,
     description: metadata.metaDescription,
     icons: {
-      icon: [new URL(url, getStrapiURL())],
-    },
+      icon: [new URL(url, getStrapiURL())]
+    }
   }
 }
 
 export default async function RootLayout({
   children,
-  params,
+  params
 }: {
   readonly children: React.ReactNode
   readonly params: { lang: string }
@@ -94,6 +95,7 @@ export default async function RootLayout({
 
         <Footer
           logoUrl={footerLogoUrl}
+          description={footer.description}
           logoText={footer.footerLogo.logoText}
           menuLinks={footer.menuLinks}
           categoryLinks={footer.categories.data}

@@ -9,10 +9,9 @@ export default function NewsCardItem({ data }: { data: NewsProps }) {
   const imageUrl = getStrapiMedia(data.cover.data?.attributes.url)
   return (
     <Link
-      href={`/news/${data.slug}`}
+      href={`/news-post/${data.slug}`}
       key={data.slug}
-      className='max-w-sm mx-auto group hover:no-underline pb-2 focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[10rem] rounded-2xl overflow-hidden shadow-lg'
-    >
+      className='max-w-sm mx-auto group hover:no-underline pb-2 focus:no-underline dark:bg-gray-900 lg:w-[300px] xl:min-w-[10rem] rounded-2xl overflow-hidden shadow-lg'>
       {imageUrl && (
         <Image
           alt='presentation'
