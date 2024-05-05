@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: metadata.metaTitle,
-    description: metadata.metaDescription
+    description: metadata.metaDescription,
   }
 }
 
@@ -34,7 +34,7 @@ export default async function PageRoute({ params }: Props) {
     if (params.slug.length > 1) {
       const content = {
         ...page.data[0].attributes,
-        __component: `${params.slug[0]}-detail`
+        __component: `${params.slug[0]}-detail`,
       }
       return sectionRenderer(content, 0, params.lang)
     } else {
@@ -46,6 +46,7 @@ export default async function PageRoute({ params }: Props) {
     }
   } else {
     const contentSections = page.data[0].attributes.contentSections
+
     return contentSections.map((section: any, index: number) => {
       return sectionRenderer(section, index, params.lang)
     })
