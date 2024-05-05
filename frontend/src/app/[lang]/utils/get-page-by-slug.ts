@@ -29,7 +29,7 @@ export async function getPageBySlug(slug: string | string[], lang: string) {
     const path = `/pages`
     const urlParamsObject = {
       filters: { slug },
-      locale: lang
+      locale: lang,
     }
     const options = { headers: { Authorization: `Bearer ${token}` } }
 
