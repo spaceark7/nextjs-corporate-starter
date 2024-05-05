@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { getStrapiMedia } from '../utils/api-helpers'
 
 export default async function ServiceCollections({ lang }: { lang: string }) {
-  console.log('ServiceCollections', lang)
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
   const path = `/services`
   const urlParamsObject = {
@@ -18,14 +17,12 @@ export default async function ServiceCollections({ lang }: { lang: string }) {
 
   const responseData = await fetchAPI(path, urlParamsObject, options)
 
-
   if (!responseData.data.length) {
     return null
   }
   return (
-    <BentoGrid className='mx-auto w-full md:auto-rows-[20rem]'>
+    <BentoGrid className='mx-auto w-full lg:w-1/2 md:auto-rows-[20rem]'>
       {responseData.data.map((item: ServiceModel, i: number) => {
-        console.log('ServiceCollections', item)
         const imageUrl = getStrapiMedia(
           item.attributes.cover.data.attributes.url
         )
