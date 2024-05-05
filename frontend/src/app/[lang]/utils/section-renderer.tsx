@@ -11,6 +11,7 @@ import ServiceCardGroup from '../components/ServiceCardGroup'
 import RowGroupWithCardList from '../components/RowGroupWithCardList'
 import ContentBlock from '../components/ContentBlock'
 import BentoGridWithCollapsible from '../components/BentoGridWithCollapse'
+import ServiceDetail from '../components/ServiceDetail'
 
 export function sectionRenderer(section: any, index: number, lang?: string) {
   switch (section.__component) {
@@ -23,15 +24,19 @@ export function sectionRenderer(section: any, index: number, lang?: string) {
     case 'sections.service-group':
       return <ServiceGroup key={index} data={section} lang={lang} />
     case 'sections.service-card-group':
-      return <ServiceCardGroup key={index} data={section} />
-    case 'sections.row-group-card-list':
-      return <RowGroupWithCardList key={index} data={section} lang={lang} />
+      return <ServiceCardGroup key={index} data={section} lang={lang} />
+    case 'sections.service-card-group':
+      return <ServiceCardGroup key={index} data={section} lang={lang} />
+    case 'service-detail':
+      return <ServiceDetail key={index} data={section} lang={lang} />
     case 'sections.content-block':
       return <ContentBlock key={index} data={section} lang={lang} />
     case 'sections.bento-grid-with-collapsible':
       return <BentoGridWithCollapsible key={index} data={section} lang={lang} />
     case 'sections.hero-route':
       return <HeroRoute key={index} data={section} />
+    case 'sections.row-group-card-list':
+      return <RowGroupWithCardList key={index} data={section} lang={lang} />
     case 'sections.features':
       return <Features key={index} data={section} />
     case 'sections.testimonials-group':
