@@ -6,13 +6,13 @@ import Image from 'next/image'
 import ServiceCollections from './ServiceCollections'
 import {
   BentoGridCollapsible,
-  BentoGridItemCollapsible
+  BentoGridItemCollapsible,
 } from './elements/bento-grid/BentoGridCollapsible'
 import { FaArrowUp } from 'react-icons/fa'
 
 const BentoGridWithCollapsible = ({
   data,
-  lang
+  lang,
 }: {
   data: BentoGridWithCollapsible
   lang?: string
