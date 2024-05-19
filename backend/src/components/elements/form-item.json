@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_elements_form_items",
+  "info": {
+    "displayName": "Form Item",
+    "icon": "pencil",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "text",
+        "textarea",
+        "number",
+        "phone",
+        "email",
+        "dropdown",
+        "checkbox",
+        "radio"
+      ]
+    },
+    "options": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::option.option"
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}

@@ -920,6 +920,71 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiFormSubmissionFormSubmission extends Schema.SingleType {
+  collectionName: 'form_submissions';
+  info: {
+    singularName: 'form-submission';
+    pluralName: 'form-submissions';
+    displayName: 'Form Submission';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    form_fields: Attribute.DynamicZone<['sections.form-submit']> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    submit_button_text: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::form-submission.form-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::form-submission.form-submission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::form-submission.form-submission',
+      'oneToMany',
+      'api::form-submission.form-submission'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiGlobalGlobal extends Schema.SingleType {
   collectionName: 'globals';
   info: {
@@ -1106,6 +1171,42 @@ export interface ApiNewsNews extends Schema.CollectionType {
   };
 }
 
+export interface ApiOptionOption extends Schema.CollectionType {
+  collectionName: 'options';
+  info: {
+    singularName: 'option';
+    pluralName: 'options';
+    displayName: 'Option Input';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    option: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        maxLength: 25;
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::option.option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::option.option',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
@@ -1174,7 +1275,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'sections.service-card-group',
         'sections.row-group-card-list',
         'sections.content-block',
-        'sections.bento-grid-with-collapsible'
+        'sections.bento-grid-with-collapsible',
+        'sections.form-submit'
       ]
     > &
       Attribute.SetPluginOptions<{
@@ -1334,9 +1436,11 @@ declare module '@strapi/types' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::form-submission.form-submission': ApiFormSubmissionFormSubmission;
       'api::global.global': ApiGlobalGlobal;
       'api::lead-form-submission.lead-form-submission': ApiLeadFormSubmissionLeadFormSubmission;
       'api::news.news': ApiNewsNews;
+      'api::option.option': ApiOptionOption;
       'api::page.page': ApiPagePage;
       'api::product-feature.product-feature': ApiProductFeatureProductFeature;
       'api::service.service': ApiServiceService;

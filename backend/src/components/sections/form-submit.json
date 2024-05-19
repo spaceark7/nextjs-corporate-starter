@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_sections_form_submits",
+  "info": {
+    "displayName": "Form Submit",
+    "icon": "paperPlane",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "email_receiver": {
+      "type": "email",
+      "required": true
+    },
+    "form_fields": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.form-item"
+    }
+  }
+}

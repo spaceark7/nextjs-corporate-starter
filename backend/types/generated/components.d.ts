@@ -75,6 +75,56 @@ export interface ElementsFooterSection extends Schema.Component {
   };
 }
 
+export interface ElementsFormItem extends Schema.Component {
+  collectionName: 'components_elements_form_items';
+  info: {
+    displayName: 'Form Item';
+    icon: 'pencil';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String & Attribute.Required;
+    type: Attribute.Enumeration<
+      [
+        'text',
+        'textarea',
+        'number',
+        'phone',
+        'email',
+        'dropdown',
+        'checkbox',
+        'radio'
+      ]
+    >;
+    options: Attribute.Relation<
+      'elements.form-item',
+      'oneToMany',
+      'api::option.option'
+    >;
+    required: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ElementsFormOptions extends Schema.Component {
+  collectionName: 'components_elements_form_options';
+  info: {
+    displayName: 'form options';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    label: Attribute.String & Attribute.Required & Attribute.Unique;
+    type: Attribute.Enumeration<['dropdown', 'radio', 'checkbox']>;
+    options: Attribute.Relation<
+      'elements.form-options',
+      'oneToMany',
+      'api::option.option'
+    >;
+  };
+}
+
 export interface ElementsHeroItem extends Schema.Component {
   collectionName: 'components_elements_hero_items';
   info: {
@@ -414,6 +464,21 @@ export interface SectionsFeatures extends Schema.Component {
   };
 }
 
+export interface SectionsFormSubmit extends Schema.Component {
+  collectionName: 'components_sections_form_submits';
+  info: {
+    displayName: 'Form Submit';
+    icon: 'paperPlane';
+    description: '';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    email_receiver: Attribute.Email & Attribute.Required;
+    form_fields: Attribute.Component<'elements.form-item', true>;
+  };
+}
+
 export interface SectionsHeading extends Schema.Component {
   collectionName: 'components_sections_headings';
   info: {
@@ -733,6 +798,8 @@ declare module '@strapi/types' {
       'elements.feature-row': ElementsFeatureRow;
       'elements.feature': ElementsFeature;
       'elements.footer-section': ElementsFooterSection;
+      'elements.form-item': ElementsFormItem;
+      'elements.form-options': ElementsFormOptions;
       'elements.hero-item': ElementsHeroItem;
       'elements.logos': ElementsLogos;
       'elements.notification-banner': ElementsNotificationBanner;
@@ -754,6 +821,7 @@ declare module '@strapi/types' {
       'sections.feature-columns-group': SectionsFeatureColumnsGroup;
       'sections.feature-rows-group': SectionsFeatureRowsGroup;
       'sections.features': SectionsFeatures;
+      'sections.form-submit': SectionsFormSubmit;
       'sections.heading': SectionsHeading;
       'sections.hero-group': SectionsHeroGroup;
       'sections.hero-route': SectionsHeroRoute;
