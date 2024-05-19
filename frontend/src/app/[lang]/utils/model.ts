@@ -5,6 +5,25 @@ type StrapiResponse<T> = {
   message: string
 }
 
+export interface SEO {
+  id: number
+  metaTitle: string
+  metaDescription: string
+  shareImage: ImageData
+}
+
+export interface OptionModel {
+  id: number
+  attributes: OptionModelAttributes
+}
+
+export interface OptionModelAttributes {
+  option: string
+  createdAt: Date
+  updatedAt: Date
+  publishedAt: Date
+}
+
 export interface Attribute {
   url: string
   alternativeText?: any
@@ -217,6 +236,25 @@ export interface ServiceModelAttributes {
   detail: Detail[]
 }
 
+export interface SubmitFormModel {
+  id: number
+  __component: string
+  title: string
+  description: string
+  email_receiver: string
+  form_fields: FormField[]
+}
+
+export interface FormField {
+  id: number
+  label: string
+  type: string
+  required: boolean
+  options: {
+    data: OptionModel[] | null
+  }
+}
+
 export interface Detail {
   id: number
   __component: string
@@ -237,8 +275,8 @@ export interface NewsModelAttributes {
   brief_summary: string
   cover: Media
   blocks: BlocksContent
+  seo?: SEO
 }
-
 
 export interface ContentBlock {
   id: number
@@ -268,5 +306,3 @@ export interface BentoGridItemCollapsible {
   content: BlocksContent
   image: Media
 }
-
-

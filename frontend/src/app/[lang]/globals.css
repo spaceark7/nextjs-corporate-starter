@@ -1,16 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "react-slideshow-image/dist/styles.css";
+@import 'react-slideshow-image/dist/styles.css';
 
 body {
-  @apply dark:bg-black
+  @apply dark:bg-slate-950;
 }
-
 
 /******************************************* 
   Rich Text Styles
-*******************************************/ 
+*******************************************/
 
 /* Headers */
 .rich-text h1 {
@@ -122,15 +121,14 @@ body {
   @apply bg-yellow-100 border-yellow-500 text-yellow-700 px-4 py-2 rounded-lg mb-4;
 }
 
-
 /******************************************* 
   React Slideshow Styles
-*******************************************/   
+*******************************************/
 
-.react-slideshow-container [aria-label="Previous Slide"] {
+.react-slideshow-container [aria-label='Previous Slide'] {
   margin-left: 1rem;
 }
 
-.react-slideshow-container [aria-label="Next Slide"] {
+.react-slideshow-container [aria-label='Next Slide'] {
   margin-right: 1rem;
 }

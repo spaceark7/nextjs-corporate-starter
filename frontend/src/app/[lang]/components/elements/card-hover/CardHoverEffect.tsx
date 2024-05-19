@@ -91,7 +91,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        'rounded-2xl h-full w-full p-2 overflow-hidden bg-white border border-transparent dark:border-white/[0.2] group-hover:border-slate-600 relative z-20',
+        'rounded-2xl h-full w-full p-2 overflow-hidden bg-white dark:bg-slate-950 border border-transparent dark:border-white/[0.2] group-hover:border-slate-600 relative z-20',
         className
       )}
     >
@@ -109,7 +109,12 @@ export const CardTitle = ({
   children: React.ReactNode
 }) => {
   return (
-    <h4 className={cn('text-neutral-800 font-bold tracking-wide', className)}>
+    <h4
+      className={cn(
+        'text-neutral-800 dark:text-white font-bold tracking-wide',
+        className
+      )}
+    >
       {children}
     </h4>
   )
@@ -131,13 +136,7 @@ export const CardImage = ({
         className
       )}
     >
-      <Image
-        src={url}
-        alt={alt}
-        layout='fill'
-        objectFit='cover'
-        className='rounded-xl'
-      />
+      <Image src={url} alt={alt} fill className='rounded-xl object-cover' />
     </div>
   )
 }

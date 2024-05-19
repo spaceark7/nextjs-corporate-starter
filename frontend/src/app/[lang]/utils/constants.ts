@@ -1,4 +1,6 @@
+import { getMetaTitle } from './api-helpers'
+
 export const FALLBACK_SEO = {
-    title: "Strapi Starter Next Blog",
-    description: "Strapi Starter Next Blog",
+  title: getMetaTitle(''),
+  description: 'Tidak ditemukan',
 }

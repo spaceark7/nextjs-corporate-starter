@@ -6,16 +6,16 @@ import RichTextBlockRenderer from './elements/rich-text-block-renderer/RichTextB
 
 const ContentBlock = ({
   data,
-  lang
+  lang,
 }: {
   data: ContentBlock
   lang?: string
 }) => {
   return (
-    <section className='dark:bg-black  dark:text-gray-100 bg-poly-slate-700 bg-no-repeat bg-bottom bg-contain'>
+    <section className='dark:bg-slate-950  dark:text-gray-100 dark:bg-poly-dark-slate-100 bg-poly-slate-700 bg-no-repeat bg-bottom bg-contain'>
       <div className='container relative flex flex-col justify-center gap-6 p-6 mx-auto sm:py-12 lg:py-24  lg:justify-between'>
         <div className='mb-4 max-w-prose mx-auto h-fit'>
-          <h1 className='text-4xl font-bold'>{data.title}</h1>
+          <h1 className='text-4xl font-bold font-title'>{data.title}</h1>
         </div>
 
         {data.content.length > 0

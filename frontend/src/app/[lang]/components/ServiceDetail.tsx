@@ -15,7 +15,7 @@ export default function ServiceDetail({ data, lang }: ServiceDetailProps) {
   const imgUrl = getStrapiMedia(data.cover.data.attributes.url)
 
   return (
-    <section className='dark:bg-black  dark:text-gray-100 bg-poly-slate-300 bg-no-repeat bg-bottom bg-contain'>
+    <section className='dark:bg-slate-950  dark:text-gray-100 dark:bg-poly-dark-slate-100 bg-poly-slate-300 bg-no-repeat bg-bottom bg-contain'>
       <div className='flex relative top-0 left-0 w-full items-center justify-center  mt-8 lg:mt-0 aspect-[3/1]'>
         <Image
           src={imgUrl || ''}

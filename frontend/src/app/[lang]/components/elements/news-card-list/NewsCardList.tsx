@@ -21,9 +21,11 @@ interface Meta {
 export default function NewsCardList({
   className,
   lang,
+  slug,
 }: {
   className?: string
   lang?: string
+  slug?: string
 }) {
   const [meta, setMeta] = useState<Meta | undefined>()
   const [data, setData] = useState<any>([])
@@ -31,21 +33,41 @@ export default function NewsCardList({
   const [isLimitReached, setLimitReached] = useState(false)
   const pathname = usePathname()
   const isNewsPostPage = pathname.includes('news-post')
+  const isNewsDetailPage = slug ? pathname.includes(slug) : false
 
   const fetchData = useCallback(async (start: number, limit: number) => {
     setLoading(true)
     try {
       const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
       const path = `/news-post`
-      const urlParamsObject = {
-        sort: { createdAt: 'desc' },
-        populate: 'deep',
-        pagination: {
-          start: start,
-          limit: limit,
-        },
-        locale: lang,
+      let urlParamsObject
+      if (isNewsDetailPage) {
+        urlParamsObject = {
+          sort: { createdAt: 'desc' },
+          filters: {
+            slug: {
+              $ne: slug,
+            },
+          },
+          populate: 'deep',
+          pagination: {
+            start: start,
+            limit: limit,
+          },
+          locale: lang,
+        }
+      } else {
+        urlParamsObject = {
+          sort: { createdAt: 'desc' },
+          populate: 'deep',
+          pagination: {
+            start: start,
+            limit: limit,
+          },
+          locale: lang,
+        }
       }
+
       const options = { headers: { Authorization: `Bearer ${token}` } }
       const responseData = await fetchAPI(path, urlParamsObject, options)
 
@@ -93,7 +115,7 @@ export default function NewsCardList({
         ))} */}
       </div>
 
-      {isNewsPostPage ? (
+      {isNewsPostPage && !isNewsDetailPage ? (
         <div className='w-full flex justify-center mt-8'>
           <button
             onClick={loadMorePosts}
@@ -107,7 +129,9 @@ export default function NewsCardList({
         </div>
       ) : (
         <Link href={'/news-post'} className='w-full flex justify-center mt-8'>
-          <button className={renderButtonStyle('primary')}>See More</button>
+          <button className={renderButtonStyle('primary')}>
+            {lang === 'id' ? 'Lihat lebih banyak' : 'See more'}
+          </button>
         </Link>
       )}
     </>

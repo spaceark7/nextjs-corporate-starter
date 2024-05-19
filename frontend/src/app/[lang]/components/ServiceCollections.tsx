@@ -46,9 +46,8 @@ const HeaderImage = ({ imageUrl }: { imageUrl: string }) => (
     <Image
       src={imageUrl}
       alt='alt text'
-      layout='fill'
-      objectFit='cover'
-      className='rounded-xl'
+      fill
+      className='rounded-xl object-cover'
     />
   </div>
 )

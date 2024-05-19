@@ -123,8 +123,8 @@ export const InfiniteMovingCards = ({
                       <div className='relative w-12 h-12 rounded-full :aspect-square'>
                         <Image
                           src={imageUrl}
-                          alt='alt text'
-                          layout='fill'
+                          alt={item.customer}
+                          fill
                           className='object-cover aspect-square rounded-full'
                         />
                       </div>

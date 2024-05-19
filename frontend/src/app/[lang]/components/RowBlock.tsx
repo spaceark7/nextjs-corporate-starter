@@ -18,14 +18,14 @@ const RowBlock = ({ data }: RowBlockProps) => {
   }
 
   return (
-    <section className='dark:bg-black dark:text-gray-100'>
+    <section className='dark:bg-slate-950 dark:text-gray-100'>
       <div
         className={`container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 ${
           data.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
         } lg:justify-between`}
       >
         <div className='flex flex-col justify-center p-6 text-center rounded-lg lg:max-w-md xl:max-w-lg lg:text-left '>
-          <h1 className='text-4xl font-bold'>{data.title}</h1>
+          <h1 className='text-4xl font-bold font-title'>{data.title}</h1>
           <p className='mt-4 break-words'>{data.description}</p>
           <div className='mt-6 space-x-4'>
             {data.action && (

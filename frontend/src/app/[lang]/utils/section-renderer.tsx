@@ -12,6 +12,8 @@ import RowGroupWithCardList from '../components/RowGroupWithCardList'
 import ContentBlock from '../components/ContentBlock'
 import BentoGridWithCollapsible from '../components/BentoGridWithCollapse'
 import ServiceDetail from '../components/ServiceDetail'
+import NewsPostDetail from '../components/news/NewsDetail'
+import FormSubmit from '../components/form/FormSubmit'
 
 export function sectionRenderer(section: any, index: number, lang?: string) {
   switch (section.__component) {
@@ -35,6 +37,8 @@ export function sectionRenderer(section: any, index: number, lang?: string) {
       return <BentoGridWithCollapsible key={index} data={section} lang={lang} />
     case 'sections.hero-route':
       return <HeroRoute key={index} data={section} />
+    case 'news-post-detail':
+      return <NewsPostDetail key={index} data={section} lang={lang} />
     case 'sections.row-group-card-list':
       return <RowGroupWithCardList key={index} data={section} lang={lang} />
     case 'sections.features':
@@ -45,6 +49,8 @@ export function sectionRenderer(section: any, index: number, lang?: string) {
       return <Pricing key={index} data={section} />
     case 'sections.lead-form':
       return <Email key={index} data={section} />
+    case 'sections.form-submit':
+      return <FormSubmit key={index} data={section} />
     default:
       return null
   }

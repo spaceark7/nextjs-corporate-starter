@@ -18,10 +18,10 @@ const BentoGridWithCollapsible = ({
   lang?: string
 }) => {
   return (
-    <section className='dark:bg-black  dark:text-gray-100'>
+    <section className='dark:bg-slate-950  dark:text-gray-100'>
       <div className='container relative flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between'>
         <div className='lg:sticky left-0 top-1/4 bottom-1/2 mb-4 max-w-prose mx-auto h-fit'>
-          <h1 className='text-4xl font-bold'>{data.title}</h1>
+          <h1 className='text-4xl font-bold font-title'>{data.title}</h1>
           <p className='mt-4 break-words'>{data.description}</p>
         </div>
 
@@ -52,9 +52,8 @@ const HeaderImage = ({ imageUrl }: { imageUrl: string }) => (
     <Image
       src={imageUrl}
       alt='alt text'
-      layout='fill'
-      objectFit='cover'
-      className='rounded-xl aspect-square '
+      fill
+      className='rounded-xl object-cover aspect-square '
     />
   </div>
 )

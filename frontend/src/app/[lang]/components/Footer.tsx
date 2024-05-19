@@ -1,59 +1,59 @@
-"use client";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import Logo from "./Logo";
-import { CgWebsite } from "react-icons/cg";
+'use client'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import Logo from './Logo'
+import { CgWebsite } from 'react-icons/cg'
 import { FaDiscord, FaTiktok } from 'react-icons/fa'
 import {
   AiFillTwitterCircle,
   AiFillYoutube,
   AiFillFacebook,
-  AiFillInstagram
+  AiFillInstagram,
 } from 'react-icons/ai'
 
 interface FooterLink {
-  id: number;
-  url: string;
-  newTab: boolean;
-  text: string;
-  social?: string;
+  id: number
+  url: string
+  newTab: boolean
+  text: string
+  social?: string
 }
 
 interface CategoryLink {
-  id: string;
+  id: string
   attributes: {
-    name: string;
-    slug: string;
-  };
+    name: string
+    slug: string
+  }
 }
 
 function FooterLink({ url, text }: FooterLink) {
-  const path = usePathname();
+  const path = usePathname()
   return (
-    <li className="flex">
+    <li className='flex'>
       <Link
         href={url}
         className={`hover:dark:text-violet-400 ${
-          path === url && "dark:text-violet-400 dark:border-violet-400"
+          path === url && 'dark:text-violet-400 dark:border-violet-400'
         }}`}
       >
         {text}
       </Link>
     </li>
-  );
+  )
 }
 
 function CategoryLink({ attributes }: CategoryLink) {
   return (
-    <li className="flex">
+    <li className='flex'>
       <Link
         href={`/blog/${attributes.slug}`}
-        className="hover:dark:text-violet-400"
+        className='hover:dark:text-violet-400'
       >
         {attributes.name}
       </Link>
     </li>
-  );
+  )
 }
 
 function RenderSocialIcon({ social }: { social: string | undefined }) {
@@ -84,7 +84,7 @@ export default function Footer({
   menuLinks,
   categoryLinks,
   legalLinks,
-  socialLinks
+  socialLinks,
 }: {
   logoUrl: string | null
   logoText: string | null
@@ -95,12 +95,14 @@ export default function Footer({
   socialLinks: Array<FooterLink>
 }) {
   return (
-    <footer className='py-6 dark:bg-black dark:text-gray-50'>
+    <footer className='py-6 dark:bg-slate-950 dark:text-gray-50'>
       <div className='container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50'>
         <div className='grid grid-cols-12'>
           <div className='pb-6 col-span-full md:pb-0 md:col-span-6'>
             <Logo src={logoUrl}>
-              {logoText && <h2 className='text-2xl font-bold'>{logoText}</h2>}
+              {logoText && (
+                <h2 className='text-2xl font-bold font-title'>{logoText}</h2>
+              )}
             </Logo>
             <p>{description}</p>
           </div>
@@ -131,7 +133,8 @@ export default function Footer({
                 <Link
                   href={link.url}
                   className='text-gray-400 hover:text-gray-300 mr-2'
-                  key={link.id}>
+                  key={link.id}
+                >
                   {link.text}
                 </Link>
               ))}
@@ -146,7 +149,8 @@ export default function Footer({
                   href={link.url}
                   title={link.text}
                   target={link.newTab ? '_blank' : '_self'}
-                  className='flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900'>
+                  className='flex items-center justify-center w-10 h-10 rounded-full dark:bg-violet-400 dark:text-gray-900'
+                >
                   <RenderSocialIcon social={link.social} />
                 </a>
               )

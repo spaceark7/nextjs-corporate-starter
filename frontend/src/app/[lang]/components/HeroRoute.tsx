@@ -27,12 +27,12 @@ interface HeroProps {
 export default function HeroRoute({ data }: HeroProps) {
   const imgUrl = getStrapiMedia(data.image.data.attributes.url)
   return (
-    <section className='dark:bg-black  dark:text-gray-100'>
+    <section className='dark:bg-slate-950  dark:text-gray-100'>
       {data.use_parallax ? (
         <ContainerScroll
           titleComponent={
             <>
-              <h1 className='text-4xl font-semibold text-black dark:text-white'>
+              <h1 className='text-4xl font-title font-semibold text-black dark:text-white'>
                 {data.title} <br />
                 <span className='text-4xl md:text-[4rem] font-bold mt-1 leading-none'>
                   {data.subtitle}
@@ -50,7 +50,7 @@ export default function HeroRoute({ data }: HeroProps) {
           />
         </ContainerScroll>
       ) : (
-        <div className='flex relative top-0 left-0 w-full items-center justify-center  mt-8 lg:mt-0 aspect-[3/1]'>
+        <div className='flex relative top-0 left-0 w-full items-center justify-center lg:mt-0 aspect-[3/1]'>
           <Image
             src={imgUrl || ''}
             alt={data.image.data.attributes.alternativeText || 'none provided'}

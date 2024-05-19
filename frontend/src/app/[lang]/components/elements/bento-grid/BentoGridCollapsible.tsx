@@ -45,7 +45,7 @@ export const BentoGridItemCollapsible = ({
         <>
           <div
             className={cn(
-              'row-span-1  group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-black dark:border-white/[0.2] bg-white border-b border-gray-200  flex flex-col ',
+              'row-span-1  group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none p-4 dark:bg-slate-950 dark:border-white/[0.2] bg-white border-b border-gray-200  flex flex-col ',
               className
             )}
           >
