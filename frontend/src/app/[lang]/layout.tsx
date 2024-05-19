@@ -7,6 +7,8 @@ import { i18n } from '../../../i18n-config'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { FALLBACK_SEO } from '@/app/[lang]/utils/constants'
+import { dm_sans, inter_tight } from '@/fonts'
+import { ThemeProvider } from './components/ThemeProvider'
 
 async function getGlobal(lang: string): Promise<any> {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
@@ -23,21 +25,22 @@ async function getGlobal(lang: string): Promise<any> {
       'favicon',
       'notificationBanner.link',
       'navbar.links',
+      'navbar.button',
       'navbar.navbarLogo.logoImg',
       'footer.footerLogo.logoImg',
       'footer.menuLinks',
       'footer.legalLinks',
       'footer.socialLinks',
       'footer.categories',
-      'footer.description'
+      'footer.description',
     ],
-    locale: lang
+    locale: lang,
   }
   return await fetchAPI(path, urlParamsObject, options)
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
   params: { lang: string }
 }): Promise<Metadata> {
@@ -47,19 +50,21 @@ export async function generateMetadata({
 
   const { metadata, favicon } = meta.data.attributes
   const { url } = favicon.data.attributes
-
   return {
     title: metadata.metaTitle,
     description: metadata.metaDescription,
     icons: {
-      icon: [new URL(url, getStrapiURL())]
-    }
+      icon: [new URL(url, getStrapiURL())],
+    },
+    openGraph: {
+      images: [new URL(url, getStrapiURL())],
+    },
   }
 }
 
 export default async function RootLayout({
   children,
-  params
+  params,
 }: {
   readonly children: React.ReactNode
   readonly params: { lang: string }
@@ -68,7 +73,7 @@ export default async function RootLayout({
   // TODO: CREATE A CUSTOM ERROR PAGE
   if (!global.data) return null
 
-  const { notificationBanner, navbar, footer } = global.data.attributes
+  const { navbar, footer } = global.data.attributes
 
   const navbarLogoUrl = getStrapiMedia(
     navbar.navbarLogo.logoImg.data?.attributes.url
@@ -79,29 +84,40 @@ export default async function RootLayout({
   )
 
   return (
-    <html lang={params.lang}>
+    <html
+      lang={params.lang}
+      className={`${dm_sans.variable} ${inter_tight.variable}`}
+      suppressHydrationWarning
+    >
       <body className='relative'>
-        <Navbar
-          links={navbar.links}
-          logoUrl={navbarLogoUrl}
-          logoText={navbar.navbarLogo.logoText}
-        />
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='light'
+          disableTransitionOnChange
+        >
+          <Navbar
+            links={navbar.links}
+            logoUrl={navbarLogoUrl}
+            button={navbar.button}
+            logoText={navbar.navbarLogo.logoText}
+          />
 
-        <main className='dark:bg-black dark:text-gray-100 min-h-screen'>
-          {children}
-        </main>
+          <main className='dark:bg-slate-950 dark:text-gray-100 min-h-screen'>
+            {children}
+          </main>
 
-        {/* <Banner data={notificationBanner} /> */}
+          {/* <Banner data={notificationBanner} /> */}
 
-        <Footer
-          logoUrl={footerLogoUrl}
-          description={footer.description}
-          logoText={footer.footerLogo.logoText}
-          menuLinks={footer.menuLinks}
-          categoryLinks={footer.categories.data}
-          legalLinks={footer.legalLinks}
-          socialLinks={footer.socialLinks}
-        />
+          <Footer
+            logoUrl={footerLogoUrl}
+            description={footer.description}
+            logoText={footer.footerLogo.logoText}
+            menuLinks={footer.menuLinks}
+            categoryLinks={footer.categories.data}
+            legalLinks={footer.legalLinks}
+            socialLinks={footer.socialLinks}
+          />
+        </ThemeProvider>
       </body>
     </html>
   )
