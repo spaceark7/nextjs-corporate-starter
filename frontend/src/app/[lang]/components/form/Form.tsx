@@ -90,6 +90,10 @@ const FormRenderer = ({
               value: required,
               message: 'Wajib diisi',
             },
+            minLength: {
+              value: 3,
+              message: 'Minimal 3 karakter',
+            },
           }}
           render={({ field, fieldState }) => (
             <Field>
@@ -105,9 +109,13 @@ const FormRenderer = ({
               <Input
                 type='text'
                 onChange={field.onChange}
+                onBlur={field.onBlur}
+                invalid={fieldState.error?.message ? true : false}
                 className={cn(
                   'mt-3 block w-full rounded-lg border-none dark:bg-white/5 bg-gray-100 py-1.5 px-3 text-lg dark:text-white',
-                  'focus:outline-none  data-[focus]:outline-2 data-[focus]:-outline-offset-2  data-[invalid]:outline-red-700 '
+                  'focus:outline-none  data-[focus]:outline-2 data-[focus]:-outline-offset-2  data-[invalid]:outline-red-700 ',
+                  fieldState.error?.message &&
+                    'data-[invalid]:outline-red-700 bg-red-700/10'
                 )}
               />
               <small className='text-red-500'>
@@ -127,6 +135,10 @@ const FormRenderer = ({
               value: required,
               message: 'Wajib diisi',
             },
+            maxLength: {
+              value: 250,
+              message: 'Maksimal 250 karakter',
+            },
           }}
           render={({ field, fieldState }) => (
             <Field>
@@ -141,9 +153,13 @@ const FormRenderer = ({
               </Label>
               <Textarea
                 onChange={field.onChange}
+                onBlur={field.onBlur}
+                invalid={fieldState.error?.message ? true : false}
                 className={cn(
                   'mt-3 block w-full rounded-lg border-none dark:bg-white/5 bg-gray-100 py-1.5 px-3 text-lg dark:text-white',
-                  'focus:outline-none  data-[focus]:outline-2 data-[focus]:-outline-offset-2  data-[invalid]:outline-red-700 '
+                  'focus:outline-none  data-[focus]:outline-2 data-[focus]:-outline-offset-2  data-[invalid]:outline-red-700 ',
+                  fieldState.error?.message &&
+                    'data-[invalid]:outline-red-700 bg-red-700/10'
                 )}
               />
               <small className='text-red-500'>
@@ -178,9 +194,61 @@ const FormRenderer = ({
               <Input
                 type='number'
                 onChange={field.onChange}
+                onBlur={field.onBlur}
+                invalid={fieldState.error?.message ? true : false}
                 className={cn(
                   'mt-3 block w-full rounded-lg border-none dark:bg-white/5 bg-gray-100 py-1.5 px-3 text-lg dark:text-white',
-                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45'
+                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45',
+                  fieldState.error?.message &&
+                    'data-[invalid]:outline-red-700 bg-red-700/10'
+                )}
+              />
+              <small className='text-red-500'>
+                {fieldState.error?.message}
+              </small>
+            </Field>
+          )}
+        />
+      )
+    case 'phone':
+      return (
+        <Controller
+          name={label.toLowerCase().replace(/ /g, '_')}
+          control={control}
+          rules={{
+            required: {
+              value: required,
+              message: 'Wajib diisi',
+            },
+            pattern: {
+              value: /^[0-9]*$/,
+              message: 'No Telepon tidak valid',
+            },
+            minLength: {
+              value: 10,
+              message: 'No Telepon tidak valid',
+            },
+          }}
+          render={({ field, fieldState }) => (
+            <Field>
+              <Label
+                className={cn(
+                  'text-lg font-medium dark:text-white',
+                  required &&
+                    "after:content-['*'] after:ml-0.5 after:text-red-500"
+                )}
+              >
+                {label}
+              </Label>
+              <Input
+                type='tel'
+                onChange={field.onChange}
+                onBlur={field.onBlur}
+                invalid={fieldState.error?.message ? true : false}
+                className={cn(
+                  'mt-3 block w-full rounded-lg border-none dark:bg-white/5 bg-gray-100 py-1.5 px-3 text-lg dark:text-white',
+                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45',
+                  fieldState.error?.message && 'data-[invalid]:outline-red-700'
                 )}
               />
               <small className='text-red-500'>
@@ -219,9 +287,13 @@ const FormRenderer = ({
               <Input
                 type='email'
                 onChange={field.onChange}
+                onBlur={field.onBlur}
+                invalid={fieldState.error?.message ? true : false}
                 className={cn(
                   'mt-3 block w-full rounded-lg border-none dark:bg-white/5 bg-gray-100 py-1.5 px-3 text-lg dark:text-white',
-                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45'
+                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45',
+                  fieldState.error?.message &&
+                    'data-[invalid]:outline-red-700 bg-red-700/10'
                 )}
               />
               <small className='text-red-500'>
@@ -258,13 +330,21 @@ const FormRenderer = ({
               </Label>
               <Select
                 onChange={field.onChange}
+                onBlur={field.onBlur}
+                invalid={fieldState.error?.message ? true : false}
                 className={cn(
                   'mt-3 block w-full rounded-lg border-none dark:bg-white/5 bg-gray-100 py-1.5 px-3 text-lg dark:text-white',
-                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45'
+                  'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-primary-700/45',
+                  fieldState.error?.message &&
+                    'data-[invalid]:outline-red-700 bg-red-700/10'
                 )}
               >
                 {inputField.options.data?.map((option) => (
-                  <option key={option.id} value={option.attributes.option}>
+                  <option
+                    key={option.id}
+                    className='text-lg font-medium dark:bg-slate-800 dark:text-white'
+                    value={option.attributes.option}
+                  >
                     {option.attributes.option}
                   </option>
                 ))}
