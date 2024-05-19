@@ -1,4 +1,5 @@
 import LangRedirect from './components/LangRedirect'
+import RootErrorBoundary from './error'
 import { sectionRenderer } from './utils/section-renderer'
 import { getPageBySlug } from '@/app/[lang]/utils/get-page-by-slug'
 
@@ -9,7 +10,6 @@ export default async function RootRoute({
 }) {
   try {
     const page = await getPageBySlug('home', params.lang)
-    console.log('PageRoute', page.data[0])
     if (page.error && page.error.status == 401)
       throw new Error(
         'Missing or invalid credentials. Have you created an access token using the Strapi admin panel? http://localhost:1337/admin/'
@@ -24,6 +24,11 @@ export default async function RootRoute({
     )
   } catch (error: any) {
     console.log('error', error)
-    window.alert('Missing or invalid credentials')
+
+    if (typeof window !== 'undefined') {
+      window.alert('Missing or invalid credentials')
+    } else {
+      return <RootErrorBoundary />
+    }
   }
 }

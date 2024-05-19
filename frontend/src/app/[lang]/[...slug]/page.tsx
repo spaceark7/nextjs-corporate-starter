@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { getPageBySlug } from '@/app/[lang]/utils/get-page-by-slug'
 import { FALLBACK_SEO } from '@/app/[lang]/utils/constants'
 import NotFound from '../components/NotFound'
+import { getMetaTitle, getStrapiMedia } from '../utils/api-helpers'
 
 type Props = {
   params: {
@@ -14,20 +15,28 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = await getPageBySlug(params.slug, params.lang)
   console.log('generateMetadata', page)
-  if (page.data.length === 0) return FALLBACK_SEO
+
+  if (page.data?.length === 0 || !page.data) return FALLBACK_SEO
 
   if (!page.data[0].attributes?.seo) return FALLBACK_SEO
   const metadata = page.data[0].attributes.seo
+  console.log('Metadata:image', metadata.shareImage)
+  const image = metadata.shareImage.data
+    ? getStrapiMedia(metadata.shareImage.data.attributes.url)
+    : null
 
   return {
-    title: metadata.metaTitle,
+    title: getMetaTitle(metadata.metaTitle),
     description: metadata.metaDescription,
+    openGraph: {
+      images: image ?? [],
+    },
   }
 }
 
 export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
-  if (page.data.length === 0) return <NotFound />
+  if (page.data?.length === 0 || !page.data) return <NotFound />
 
   if (Array.isArray(params.slug)) {
     console.log('params.slug', params.slug.length > 1)
@@ -36,6 +45,7 @@ export default async function PageRoute({ params }: Props) {
         ...page.data[0].attributes,
         __component: `${params.slug[0]}-detail`,
       }
+      console.log('params.slug:content', content)
       return sectionRenderer(content, 0, params.lang)
     } else {
       const contentSections = page.data[0].attributes.contentSections
